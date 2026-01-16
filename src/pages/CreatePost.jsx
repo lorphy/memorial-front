@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { API_BASE_URL } from '../config/api.js'
 
 function CreatePost() {
   const navigate = useNavigate()
@@ -27,7 +28,7 @@ function CreatePost() {
     }
 
     try {
-      const response = await fetch('/api/community/posts', {
+      const response = await fetch(`${API_BASE_URL}/api/community/posts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

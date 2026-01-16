@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { API_BASE_URL } from '../config/api.js'
 
 function MemorialDetail() {
   const { id } = useParams()
@@ -20,7 +21,7 @@ function MemorialDetail() {
       const headers = {}
       if (token) headers['Authorization'] = `Bearer ${token}`
 
-      const response = await fetch(`/api/memorials/${id}`, { headers })
+      const response = await fetch(`${API_BASE_URL}/api/memorials/${id}`, { headers })
       if (response.ok) {
         const data = await response.json()
         setMemorial(data)
@@ -35,7 +36,7 @@ function MemorialDetail() {
   const handleLeaveMessage = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch(`/api/memorials/${id}/messages`, {
+      const response = await fetch(`${API_BASE_URL}/api/memorials/${id}/messages`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

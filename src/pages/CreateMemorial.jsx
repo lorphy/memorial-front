@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { API_BASE_URL } from '../config/api.js'
 
 function CreateMemorial() {
   const navigate = useNavigate()
@@ -93,7 +94,7 @@ function CreateMemorial() {
 
     try {
       console.log('开始 fetch 请求...')
-      const response = await fetch('/api/memorials', {
+      const response = await fetch(`${API_BASE_URL}/api/memorials`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

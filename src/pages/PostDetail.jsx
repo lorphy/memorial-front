@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { API_BASE_URL } from '../config/api.js'
 
 function PostDetail() {
   const { id } = useParams()
@@ -22,7 +23,7 @@ function PostDetail() {
       const headers = {}
       if (token) headers['Authorization'] = `Bearer ${token}`
 
-      const response = await fetch(`/api/community/posts/${id}`, { headers })
+      const response = await fetch(`${API_BASE_URL}/api/community/posts/${id}`, { headers })
       if (response.ok) {
         const data = await response.json()
         setPost(data)
@@ -47,7 +48,7 @@ function PostDetail() {
         return
       }
 
-      const response = await fetch(`/api/community/posts/${id}/like`, {
+      const response = await fetch(`${API_BASE_URL}/api/community/posts/${id}/like`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -80,7 +81,7 @@ function PostDetail() {
         return
       }
 
-      const response = await fetch(`/api/community/posts/${id}/comments`, {
+      const response = await fetch(`${API_BASE_URL}/api/community/posts/${id}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -103,7 +104,7 @@ function PostDetail() {
 
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`/api/community/posts/${id}/comments/${commentId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/community/posts/${id}/comments/${commentId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

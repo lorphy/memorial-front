@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { API_BASE_URL } from '../config/api.js'
 
 function Profile() {
   const navigate = useNavigate()
@@ -20,7 +21,7 @@ function Profile() {
   const fetchMemorials = async () => {
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch('/api/memorials/my', {
+      const response = await fetch(`${API_BASE_URL}/api/memorials/my`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -47,7 +48,7 @@ function Profile() {
 
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`/api/memorials/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/memorials/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

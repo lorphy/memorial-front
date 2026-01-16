@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { API_BASE_URL } from '../config/api.js'
 
 function ResetPassword() {
   const { token } = useParams()
@@ -14,7 +15,7 @@ function ResetPassword() {
     // 验证 token
     const verifyToken = async () => {
       try {
-        const response = await fetch(`/api/auth/verify-reset-token/${token}`)
+        const response = await fetch(`${API_BASE_URL}/api/auth/verify-reset-token/${token}`)
         const result = await response.json()
         setTokenValid(response.ok && result.valid)
       } catch (error) {
@@ -43,7 +44,7 @@ function ResetPassword() {
     setLoading(true)
 
     try {
-      const response = await fetch(`/api/auth/reset-password/${token}`, {
+      const response = await fetch(`${API_BASE_URL}/api/auth/reset-password/${token}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { API_BASE_URL } from '../config/api.js'
 
 function MemorialList() {
   const [memorials, setMemorials] = useState([])
@@ -12,7 +13,7 @@ function MemorialList() {
 
   const fetchMemorials = async () => {
     try {
-      const response = await fetch('/api/memorials')
+      const response = await fetch(`${API_BASE_URL}/api/memorials`)
       const data = await response.json()
       setMemorials(data)
     } catch (error) {

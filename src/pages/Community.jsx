@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { API_BASE_URL } from '../config/api.js'
 
 function Community() {
   const navigate = useNavigate()
@@ -17,7 +18,7 @@ function Community() {
   const fetchPosts = async () => {
     try {
       setLoading(true)
-      let url = `/api/community/posts?page=${page}&limit=10`
+      let url = `${API_BASE_URL}/api/community/posts?page=${page}&limit=10`
       if (category) url += `&category=${category}`
       if (searchTerm) url += `&search=${searchTerm}`
 

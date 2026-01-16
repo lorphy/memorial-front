@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { API_BASE_URL } from '../config/api.js'
 
 function EditMemorial() {
   const navigate = useNavigate()
@@ -30,7 +31,7 @@ function EditMemorial() {
   const fetchMemorial = async () => {
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`/api/memorials/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/memorials/${id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -101,7 +102,7 @@ function EditMemorial() {
     const token = localStorage.getItem('token')
 
     try {
-      const response = await fetch(`/api/memorials/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/memorials/${id}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -129,7 +130,7 @@ function EditMemorial() {
 
     const token = localStorage.getItem('token')
     try {
-      const response = await fetch(`/api/memorials/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/memorials/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
