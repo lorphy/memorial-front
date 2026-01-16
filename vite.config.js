@@ -4,14 +4,16 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 80,
+    port: 3000,
     proxy: {
       '/api': {
-        target: 'https://memorial-backend-xl42.onrender.com',
+        //target: 'https://memorial-backend-xl42.onrender.com',
+        target:'http://localhost:5000',
         changeOrigin: true
       },
       '/uploads': {
-        target: 'https://memorial-backend-xl42.onrender.com',
+        //target: 'https://memorial-backend-xl42.onrender.com',
+        target:'http://localhost:5000',
         changeOrigin: true
       }
     }
